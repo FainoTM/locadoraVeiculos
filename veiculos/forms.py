@@ -1,6 +1,7 @@
 from datetime import datetime
-
+from django.contrib.auth.models import User
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
 from veiculos.models import Veiculo, Automovel, Onibus, TipoVeiculo
 
@@ -160,3 +161,10 @@ class OnibusForm(VeiculoForm):
             veiculoObject.save()
 
             return veiculo
+
+
+class CadUsuarioForm(UserCreationForm):
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2', 'first_name', 'last_name']

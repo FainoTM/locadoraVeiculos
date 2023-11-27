@@ -28,7 +28,14 @@ class Cliente(models.Model):
         return f'Cliente: {self.nome}'
 
 
+class TipoVeiculoDisp(models.Manager):
+
+    def get_queryset(self):
+        return super().get_queryset()
+
+
 class TipoVeiculo(models.Model):
+    tipoquery = TipoVeiculoDisp()
     nome = models.CharField(max_length=100, null=False, verbose_name="Nome do veiculo", unique=True)
     arCond = models.BooleanField(default=False, verbose_name="Ar-condicionado")
 
